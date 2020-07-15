@@ -1,0 +1,54 @@
+<h2>This is Admin's page</h2>
+<div class="container">
+  <button type="submit" class="btn btn-primary" (click)="getAllUsers()" style="margin-left: 2px;"
+    *ngIf='!updateUserDiv'>{{toggleText}}</button>
+</div>
+<div class="container" *ngIf='flag'>
+  <h3>User Data</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        
+        <th>NAME</th>
+        
+        <th>PASSWORD</th> 
+        <th>DELETE</th>
+        <th>UPDATE</th>
+        <th>ADD</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let user of allUsers">
+      <td>{{user.name}}</td>
+      <td>{{user.password}}</td>
+      <td><button type="submit" class="btn btn-outline-primary" (click)="deleteUser(user.name)"
+          style="margin-left: 2px;">Delete user</button> </td>
+      <td><button type="submit" class="btn btn-outline-success" (click)="updateUser(user.name)"
+          style="margin-left: 2px;">Update User</button></td>
+      <td><button type="submit" class="btn btn-outline-primary" (click)="addUser()" style="margin-left: 2px;">Add user</button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="container" *ngIf='updateUserDiv'>
+  <h3>User Data</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        
+        <th>NAME</th>
+        <th>PASSWORD</th>
+        
+      </tr>
+    </thead>
+    <tr *ngFor="let user of allUsers">
+      
+      <td><input type="text" value={{user.name}} #name /></td>
+      <td><input type="text" value={{user.password}} #password /></td>
+      
+      <td><button type="submit" class="btn btn-primary"
+          (click)="submit(name.value,password.value)"
+          style="margin-left: 2px;">Submit</button></td>
+    </tr>
+  </table>
+</div>
